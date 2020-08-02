@@ -15,7 +15,7 @@ source copyToDir.sh ZZ2e2mu_<coeff>_<QU/LI/SM> <condor_cluster_number> <director
 Now there will be a directory with a .txt file and many .lhe files.
 ## Variables
 Note: these files were written for a VBS ZZ event. The limits were obtained in terms of ZZMass and Z pT.
-If you whish to use another variable you will need to refill the templates in plotterAndTemplateMaker.c and launch again bkgWorkspace1d.c
+If you whish to use another variable you will need to refill the templates in plotterAndTemplateMaker.c and launch again bkgWorkspace1d.c.
 You will find the instructions [here](https://github.com/covarell/vbs_analysis)
 ## Workspace
 In the given folder "workspace_pT" there are the SM shapes for Z pT. 
