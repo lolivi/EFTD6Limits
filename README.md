@@ -3,12 +3,12 @@ Limits on EFT Operators with Dim 6 Warsaw Basis
 ## Generation
 To generate quadratic, linear and SM events follow these [instructions](https://github.com/giacomoortona/D6EFTStudies/blob/master/README.md)
 When the jobs are finished there will be a folder named ZZ2e2mu_coefficient_QU/LI/SM_results.
-> Launch:
+- Launch:
 ```bash
 python postProcess.py ZZ2e2mu_<coeff>_<QU/LI/SM>_results
 head -n 3 ZZ2e2mu_<coeffic>_<QU/LI/SM>_results/postProcess.txt > /<path>/<directory>/crossSection.txt
 ```
-> Change the path inside the file copyToDir.sh and launch:
+- Change the path inside the file copyToDir.sh and launch:
 ```bash
 source copyToDir.sh ZZ2e2mu_<coeff>_<QU/LI/SM> <condor_cluster_number> <directory>
 ```
