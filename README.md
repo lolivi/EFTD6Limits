@@ -1,8 +1,8 @@
 # EFTD6Limits
 Limits on EFT Operators with Dim 6 Warsaw Basis 
 ## Generation
-To generate quadratic, linear and SM events follow these [instructions](https://github.com/giacomoortona/D6EFTStudies/blob/master/README.md)
-When the jobs are finished there will be a folder named ZZ2e2mu_coefficient_QU/LI/SM_results.
+To generate quadratic, linear and SM events follow these [instructions](https://github.com/giacomoortona/D6EFTStudies/blob/master/README.md)\
+When the jobs are finished there will be a folder named ZZ2e2mu_coefficient_QU/LI/SM_results.\
 - Launch:
 ```bash
 python postProcess.py ZZ2e2mu_<coeff>_<QU/LI/SM>_results
@@ -14,15 +14,15 @@ source copyToDir.sh ZZ2e2mu_<coeff>_<QU/LI/SM> <condor_cluster_number> <director
 ```
 Now there will be a directory with a .txt file and many .lhe files.
 ## Variables
-Note: these files were written for a VBS ZZ event. The limits were obtained in terms of ZZMass and Z pT.
-If you whish to use another variable you will need to refill the templates in plotterAndTemplateMaker.c and launch again bkgWorkspace1d.c.
+Note: these files were written for a VBS ZZ event. The limits were obtained in terms of ZZMass and Z pT.\
+If you whish to use another variable you will need to refill the templates in plotterAndTemplateMaker.c and launch again bkgWorkspace1d.c.\
 You will find the instructions [here](https://github.com/covarell/vbs_analysis)
 ## Workspace
 You will find the SM shapes for Z pT (and ZZMass) in pT/workspace/1D_...input_func.root (or Mass/workspace/1D_...input_func.root)
 ## Quadratic And Linear Workspace
 - To obtain weights for the quadratic events with respect to SM events download quad_ratio.py.
 - Change the path and write 0 if you are using the boson mass or 1 for the transverse momentum.
-- Change the cross sections, which are used to normalize the plots. You will find them in the .txt file obtained in the generation section.
+- Change the cross sections, which are used to normalize the plots. \You will find them in the .txt file obtained in the generation section.
 - Then launch:
 ```bash
 python quad_ratio.py
@@ -35,7 +35,7 @@ You should get on screen "float weightBSM={...};" and a .pdf file for the plot.
 ```bash
 condor_submit condor.sub
 ```
-- When the jobs are finished you will get two .txt files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt. These contain the integrals of the processes divided by year. So number 1 is the weighted vbs process for 2016 while the other 4 are just the SM processes. Then number 6 will be the weighted vbs process for 2017 and so on. 
+- When the jobs are finished you will get two .txt files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt.\ These contain the integrals of the processes divided by year. So number 1 is the weighted vbs process for 2016 while the other 4 are just the SM processes.\ Then number 6 will be the weighted vbs process for 2017 and so on. 
 - You will also get root files named quad_vbs_Moriond_2016.root and lin_vbs_Moriond_2016.root. These are used to create the workspace.
 - Now launch ROOT:
 ```bash
@@ -58,7 +58,7 @@ For this section use CMSSW_10_2_13.
 - Open the files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt 
 - Copy number 1, 6 and 11 and paste in the cards in the processes named "linear_1" (or "quadratic_1")
 - Now the cards should be ready
-You can download the physics model from [here](https://github.com/amassiro/AnalyticAnomalousCoupling/tree/master/python)
+- You can download the physics model from [here](https://github.com/amassiro/AnalyticAnomalousCoupling/tree/master/python)
 - Copy AnomalousCoupling.py in ".../CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit/python"
 ### Combine
 Finally launch:
