@@ -35,7 +35,10 @@ You should get on screen "float weightBSM={...};" and a .pdf file for the plot.
 ```bash
 condor_submit condor.sub
 ```
-When the jobs are finished you will get two .txt files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt.\ These contain the integrals of the processes divided by year. So number 1 is the weighted vbs process for 2016 while the other 4 are just the SM processes.\ Then number 6 will be the weighted vbs process for 2017 and so on. 
+When the jobs are finished you will get two .txt files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt\ 
+These contain the integrals of the processes divided by year\ 
+So number 1 is the weighted vbs process for 2016 while the other 4 are just the SM processes\ 
+Then number 6 will be the weighted vbs process for 2017 and so on.\ 
 You will also get root files named quad_vbs_Moriond_2016.root and lin_vbs_Moriond_2016.root. These are used to create the workspace.
 - Now launch:
 ```bash
