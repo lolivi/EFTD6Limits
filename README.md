@@ -22,7 +22,7 @@ You will find the SM shapes for Z pT (and ZZMass) in pT/workspace/1D_...input_fu
 ## Quadratic And Linear Workspace
 - To obtain weights for the quadratic events with respect to SM events download quad_ratio.py.
 - Change the path and write 0 if you are using the boson mass or 1 for the transverse momentum.
-- If you are using another boson, change the PDG code in line (24 is for positive charged W and so on...)
+- If you are using another boson, change the PDG code in line 41 (23 is for Z, 24 is for positive charged W and so on...)
 - Change the cross sections, which are used to normalize the plots. You will find them in the .txt file obtained in the generation section.
 - Then launch:
 ```bash
