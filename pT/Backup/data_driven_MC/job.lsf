@@ -1,0 +1,3 @@
+cd /afs/cern.ch/work/x/xiaomeng/test/myWorkingArea/4lOff/CMSSW_8_0_24_patch1/src/HZZ4l-plotter 
+eval `scramv1 runtime -sh`
+./run_plotter
