@@ -15,7 +15,7 @@ source copyToDir.sh ZZ2e2mu_<coeff>_<QU/LI/SM> <condor_cluster_number> <director
 Now there will be a directory with a .txt file and many .lhe files.
 ## Variables
 Note: these files were written for a VBS ZZ event. The limits were obtained in terms of ZZMass and Z pT.\
-If you whish to use another variable you will need to refill the templates in plotterAndTemplateMaker.c and launch again bkgWorkspace1d.c.\
+If you want to use another variable you will need to refill the templates in plotterAndTemplateMaker.c and launch again bkgWorkspace1d.c.\
 You will find the instructions [here](https://github.com/covarell/vbs_analysis)
 ## Workspace
 You will find the SM shapes for Z pT (and ZZMass) in pT/workspace/1D_...input_func.root (or Mass/workspace/1D_...input_func.root)
@@ -27,19 +27,18 @@ You will find the SM shapes for Z pT (and ZZMass) in pT/workspace/1D_...input_fu
 ```bash
 python quad_ratio.py
 ```
-You should get on screen "float weightBSM={...};" and a .pdf file for the plot.
+- You should get on screen "float weightBSM={...};" and a .pdf file for the plot.
 - Copy "weightBSM={..};" in plotterAndTemplateMakerQUAD.c
 - Do the same for the linear events with plotterAndTemplateMakerLIN.c
 - Now go to the folder ".../src/vbs_analysis/4l_channel/"
+- Use a CMSSW_8_0_26_patch1 environment
 - Launch:
 ```bash
 condor_submit condor.sub
 ```
-When the jobs are finished you will get two .txt files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt\ 
-These contain the integrals of the processes divided by year\ 
-So number 1 is the weighted vbs process for 2016 while the other 4 are just the SM processes\ 
-Then number 6 will be the weighted vbs process for 2017 and so on.\ 
-You will also get root files named quad_vbs_Moriond_2016.root and lin_vbs_Moriond_2016.root. These are used to create the workspace.
+- When the jobs are finished you will get two .txt files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt
+- These contain the integrals of the processes divided by year. So number 1 is the weighted vbs process for 2016 while the other 4 are just the SM processes. Then number 6 will be the weighted vbs process for 2017 and so on.
+- You will also get root files named quad_vbs_Moriond_2016.root and lin_vbs_Moriond_2016.root. These are used to create the workspace.
 - Now launch:
 ```bash
 root -l
