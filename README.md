@@ -12,9 +12,9 @@ head -n 3 ZZ2e2mu_<coeffic>_<QU/LI/SM>_results/postProcess.txt > /<path>/<direct
 ```bash
 source copyToDir.sh ZZ2e2mu_<coeff>_<QU/LI/SM> <condor_cluster_number> <directory>
 ```
-Now there will be a directory with a .txt file and many .lhe files.
+Now there will be a directory with a txt file and many lhe files.
 ## Variables
-Note: these files were written for a VBS ZZ event. The limits were obtained in terms of ZZMass and Z pT.\
+##### Note: these files were written for a VBS ZZ event. The limits were obtained in terms of ZZMass and Z pT.\
 If you want to use another variable you will need to refill the templates in plotterAndTemplateMaker.c and launch again bkgWorkspace1d.c.\
 You will find the instructions [here](https://github.com/covarell/vbs_analysis)
 ## Workspace
@@ -27,7 +27,7 @@ You will find the SM shapes for Z pT (and ZZMass) in pT/workspace/1D_...input_fu
 ```bash
 python quad_ratio.py
 ```
-- You should get on screen "float weightBSM={...};" and a .pdf file for the plot.
+- You should get on screen "float weightBSM={...};" and a pdf file for the plot.
 - Copy "weightBSM={..};" in plotterAndTemplateMakerQUAD.c
 - Do the same for the linear events with plotterAndTemplateMakerLIN.c
 - Now go to the folder ".../src/vbs_analysis/4l_channel/"
