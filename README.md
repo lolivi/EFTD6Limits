@@ -3,10 +3,16 @@ Limits on EFT Operators with Dim 6 Warsaw Basis
 ## Generation
 To generate quadratic, linear and SM events follow these [instructions](https://github.com/giacomoortona/D6EFTStudies/blob/master/README.md)\
 When the jobs are finished there will be a folder named ZZ2e2mu_coefficient_QU/LI/SM_results.
+- Go to .../D6EFTStudies/generation/
+- There should be a python file called postProcess.py . If there isn't download it from this [link](https://github.com/giacomoortona/D6EFTStudies/blob/master)
 - Launch:
 ```bash
 python postProcess.py ZZ2e2mu_<coeff>_<QU/LI/SM>_results
 head -n 3 ZZ2e2mu_<coeffic>_<QU/LI/SM>_results/postProcess.txt > /<path>/<directory>/crossSection.txt
+```
+- Download copyToDir.sh from this repository:
+```bash
+wget 
 ```
 - Change the path inside the file copyToDir.sh and launch:
 ```bash
@@ -23,7 +29,7 @@ You will find the SM shapes for Z pT (and ZZMass) in pT/workspace/1D_...input_fu
 - To obtain weights for the quadratic events with respect to SM events download quad_ratio.py.
 - Change the path and write 0 if you are using the boson mass or 1 for the transverse momentum.
 - If you are using another boson, change the PDG code in line 41 (23 is for Z, 24 is for positive charged W and so on...)
-- Change the cross sections, which are used to normalize the plots. You will find them in the .txt file obtained in the generation section.
+- Change the cross sections in line , which are used to normalize the plots. You will find them in the txt file obtained in the generation section.
 - Then launch:
 ```bash
 python quad_ratio.py
