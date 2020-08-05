@@ -67,7 +67,16 @@ cp -r EFTD6Limits/pT/Backup/* pT/
 cp -r EFTD6Limits/pT/workspace/ pT/
 rm -rf EFTD6Limits
 ```
-- Almost every file in vbs_analysis/4l_channel/ has a keyword ```<path>```. If you find it on a file you have to change it. The files you have to change are plotterAndTemplateMakerQUAD and LIN, condor.sub and runAll.sh.
+- You need to create some empty directories:
+```bash
+cd .../vbs_analysis/4l_channel/
+mkdir error
+mkdir log
+mkdir noScaleZX
+mkdir output
+```
+
+- Almost every file in vbs_analysis/4l_channel/ has a keyword ```<path>```. If you find it on a file you have to change it. The files you have to change are plotterAndTemplateMakerQUAD.c and LIN, condor.sub and runAll.sh.
 ```bash
 emacs -nw plotterAndTemplateMakerQUAD.c
 C-s 
@@ -110,9 +119,11 @@ root -l
 source runbkg_QUAD.sh
 ```
 - Do the same for the linear events
-- You will find in the folder "workspace" new root files named "quad_1D_vbs4lSyst_4e1S_2016.input_func.root" and "lin_1D_vbs4lSyst_4e1S_2016.input_func.root".
-- These need to be added to the SM shapes. Go to the folder where shapes are stored and launch:
+- You will find in the directory "workspace" new root files named "quad_1D_vbs4lSyst_4e1S_2016.input_func.root" and "lin_1D_vbs4lSyst_4e1S_2016.input_func.root".
+- These need to be added to the SM shapes. Go to the directory where shapes are stored and launch:
 ```bash
+cd vbs_analysis/4l_channel/workspace/
+wget https://github.com/lolivi/EFTD6Limits/blob/master/hadd.sh
 source hadd.sh
 ```
 - Now you should have the complete set of shapes named "tot_...input_func.root"
@@ -147,6 +158,7 @@ combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSigna
 ```
 - Finally, if you want the complete plot launch:
 ```bash
+wget https://github.com/lolivi/EFTD6Limits/blob/master/plotCombine.py
 python plotCombine.py
 ```
 - You will find my results here (link mancante). They are for VBS ZZ with ZZMass and Z pT. The operators are cHDD, cW and cHWB.   
