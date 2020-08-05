@@ -4,7 +4,7 @@ Limits on EFT Operators with Dim 6 Warsaw Basis
 To generate quadratic, linear and SM events follow these [instructions](https://github.com/giacomoortona/D6EFTStudies/blob/master/README.md)\
 When the jobs are finished there will be a directory named ZZ2e2mu_coefficient_QU/LI/SM_results.
 - Go to .../D6EFTStudies/generation/
-- There should be a python file called postProcess.py . If there isn't download it from this [link](https://github.com/giacomoortona/D6EFTStudies/blob/master)
+- There should be a python file called postProcess.py . If there isn't download it from this [link](https://github.com/giacomoortona/D6EFTStudies/tree/master/generation)
 - Launch:
 ```bash
 python postProcess.py ZZ2e2mu_<coeff>_<QU/LI/SM>_results
