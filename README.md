@@ -129,7 +129,19 @@ source hadd.sh
 - Now you should have the complete set of shapes named "tot_...input_func.root"
 ## Analysis
 For this section use CMSSW_10_2_13 and Combine. To download Combine go [here](http://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/).
-- Copy the workspace from the previous section in the directory used for the analysis.
+```bash
+export SCRAM_ARCH=slc7_amd64_gcc700
+cmsrel CMSSW_10_2_13
+cd CMSSW_10_2_13/src/
+```
+- Copy the workspace from the previous section in the directory used for the analysis. For example, for cW with pT:
+```bash
+mkdir cW
+cd cW
+mkdir pT
+cd pT
+cp -r .../CMSSW_8_0_26_patch1/src/pT/vbs_analysis/4l_channel/workspace/ .
+```
 - Download the cards from pT/cards/... (or Mass/cards/...)
 - Open the files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt 
 - Copy number 1, 6 and 11 and paste in the cards in the processes named "linear_1" (or "quadratic_1")
