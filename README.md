@@ -58,12 +58,44 @@ python quad_ratio.py
 - Now return to .../CMSSW_8_0_26_patch1/src/
 ```bash
 cd .../CMSSW_8_0_26_patch1/src/
+mkdir Mass
+mkdir pT
+git clone https://github.com/lolivi/EFTD6Limits.git
+cp -r EFTD6Limits/Mass/Backup/* Mass/
+cp -r EFTD6Limits/Mass/workspace/ Mass/
+cp -r EFTD6Limits/pT/Backup/* pT/
+cp -r EFTD6Limits/pT/workspace/ pT/
+rm -rf EFTD6Limits
+```
+- Almost every file in vbs_analysis/4l_channel/ has a keyword ```<path>```. If you find it on a file you have to change it. The files you have to change are plotterAndTemplateMakerQUAD and LIN, condor.sub and runAll.sh.
+```bash
+emacs -nw plotterAndTemplateMakerQUAD.c
+C-s 
+<path>
+```
+- Delete ```<path>``` and write your own path
+- Now, if you are using pT:
+```bash
+cd pT
+cmsenv
+cd data_driven_MC/ext/
+sh compile_ext.sh
+cd ..
+source set_library.sh
+cd ..
+cd vbs_analysis/4l_channel/
+emacs -nw plotterAndTemplateMakerQUAD.c
 ```
 - Copy "float weightBSM = {..};" in plotterAndTemplateMakerQUAD.c
 - Do the same for the linear events with plotterAndTemplateMakerLIN.c
-- Now go to the folder ".../src/vbs_analysis/4l_channel/"
-- Use a **CMSSW_8_0_26_patch1** environment
-- Launch:
+- Check that everything is okay:
+```bash
+root -l
+.L plotterAndTemplateMakerQUAD.c
+.L plotterAndTemplateMakerLIN.c
+.q
+```
+- If everything is okay launch:
 ```bash
 condor_submit condor.sub
 ```
