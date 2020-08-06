@@ -134,18 +134,25 @@ export SCRAM_ARCH=slc7_amd64_gcc700
 cmsrel CMSSW_10_2_13
 cd CMSSW_10_2_13/src/
 ```
-- Copy the workspace from the previous section in the directory used for the analysis. For example, for cW with pT:
+- Copy the workspace from the previous section in the directory used for the analysis. For example, for cW:
 ```bash
 mkdir cW
 cd cW
 mkdir pT
+mkdir Mass
 cd pT
 cp -r .../CMSSW_8_0_26_patch1/src/pT/vbs_analysis/4l_channel/workspace/ .
+cd ..
+cd Mass
+cp -r .../CMSSW_8_0_26_patch1/src/Mass/vbs_analysis/4l_channel/workspace/ .
 ```
 - Download the cards from pT/cards/... (or Mass/cards/...)
 ```bash
-cd .../CMSSW_10_2_13/src/cW/pT/
-wget 
+cd .../CMSSW_10_2_13/src/cW/
+git clone https://github.com/lolivi/EFTD6Limits.git
+cp -r EFTD6Limits/pT/cards/* ./pT/
+cp -r EFTD6Limits/Mass/cards/* ./Mass/
+rm -rf EFTD6Limits
 ```
 - Open the files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt 
 - Copy number 1, 6 and 11 and paste in the cards in the processes named "linear_1" (or "quadratic_1")
