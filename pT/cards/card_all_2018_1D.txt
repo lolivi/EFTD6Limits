@@ -1,0 +1,42 @@
+imax 3 number of bins
+jmax 6 number of processes minus 1
+kmax 18 number of nuisance parameters
+----------------------------------------------------------------------------------------------------------------------------------
+shapes *    ch1_4mu     ./workspace/tot_1D_vbs4lSyst_4mu1S_2018.input_func.root $PROCESS $PROCESS_$SYSTEMATIC
+shapes *    ch2_4e      ./workspace/tot_1D_vbs4lSyst_4e1S_2018.input_func.root $PROCESS $PROCESS_$SYSTEMATIC
+shapes *    ch3_2e2mu   ./workspace/tot_1D_vbs4lSyst_2e2mu1S_2018.input_func.root $PROCESS $PROCESS_$SYSTEMATIC
+----------------------------------------------------------------------------------------------------------------------------------
+bin          ch1_4mu      ch2_4e       ch3_2e2mu 
+observation   48	30	81
+----------------------------------------------------------------------------------------------------------------------------------
+bin                                   ch1_4mu	   ch1_4mu	ch1_4mu	     ch1_4mu	  ch1_4mu	ch1_4mu	ch1_4mu      ch2_4e       ch2_4e	 ch2_4e       ch2_4e       ch2_4e	ch2_4e	ch2_4e       ch3_2e2mu    ch3_2e2mu    ch3_2e2mu    ch3_2e2mu  ch3_2e2mu	ch3_2e2mu	ch3_2e2mu
+process                               sm      bkg_zjet     bkg_qqzz     bkg_ggzz     bkg_ttzwzz	quadratic_1	linear_1   sm      bkg_zjet     bkg_qqzz     bkg_ggzz     bkg_ttzwzz	quadratic_1	linear_1	sm      bkg_zjet     bkg_qqzz     bkg_ggzz   bkg_ttzwzz	quadratic_1	linear_1
+process                               0            1            2            3            4	5	6            0	    1            2            3            4	5	6		0            1            2            3          4	5	6 
+rate                                  3.2345	1.65974	98.116	29.0752	14.2353	-	-	2.03198	0.605313	98.116	29.0752	14.2353	-	-	5.15609	1.85891	98.116	29.0752	14.2353	-	-
+----------------------------------------------------------------------------------------------------------------------------------
+CMS_eff_e               lnN           -            -            -            -            -	-	-	       1.09         -            1.09         1.09         1.09	-	-         1.045         -            1.045         1.045   1.045	-	-                     
+CMS_eff_m               lnN           1.025         -            1.025         1.025      1.025	-	-        -            -            -            -            -	-	-		1.012        -             1.012        1.012	 1.012	-	-
+CMS_2e2mu_Zjets_2018    lnN           -            -            -            -            -	-	-	       -            -            -            -            -	-	-		-            0.621/1.387  -            -	  -	-	-
+CMS_4e_Zjets_2018       lnN           -            -            -            -            -	-	-	       -            0.595/1.427  -            -            -	-	-		-            -            -            -	  -	-	-
+CMS_4mu_Zjets_2018      lnN           -            0.639/1.362  -            -            -	-	-	       -            -            -            -            -	-	-		-            -            -            -	  -	-	-
+CMS_JES_2018            lnN           1.007         -           1.049        1.043        1.049	-	-	       1.007         -           1.049        1.043        1.049	-	-		1.007         -            1.049        1.043 	  1.049	-	-
+#ShapeJES           	shape         1		   -		 1	     1		  -	       1	     -		  1	       1	    -		1	     -		  1		1	  -
+CMS_JER                 lnN           1.002         -           1.024        1.011        1.024	-	-	       1.002         -           1.024        1.011        1.024	-	-		1.002         -            1.024        1.011 	  1.024	-	-
+PDF_qq                  lnN           1.047         -           -            -            -	-	-	       1.047        -            -            -            -	-	-    	1.047         -            -           -   	  -	-	-
+PDF_gg                  lnN           -             -           -            1.021        -	-	- 	       -            -            -            1.021        -	-	-    	-             -            -        1.021	  -	-	- 
+PDF_qqbar               lnN           -             -           1.031        -            1.027	-	-        -            -            1.031        -            1.027	-	-	-           -            1.031       -  	  1.027	-	-
+QCDScale_vbs            lnN           1.062        -      	 -           -            -	-	-	       1.062         -            -            -            -	-	-		1.062        -            -             - 	  -	-	-
+#ShapeQCDscale           shape         1		   -		 -	     -		  -	       1	     -		  -	       -	    -		1	     -		  -		-	  -
+QCDScale_ggZZ           lnN           -            -              -          1.11         -	-	- 	       -            -            -            1.11         -	-	-		-        -            -             1.11	  -	-	-
+QCDscale_ZZ		lnN           -            -            0.901/1.127  -            -	-	-	       -            -            0.901/1.127  -            -	-	-		-            -            0.901/1.127   -	  -	-	-
+QCDscale_ttz		lnN           -            -            -            -            1.12	-	-	       -            -            -            -            1.12	-	-		-            -            -          -	         1.12	-	-
+lumi_2018               lnN           1.025        -            1.025        1.025        1.025	-	-	       1.025        -            1.025        1.025        1.025	-	-	1.025        -            1.025        1.025	  1.025	-	-
+MCstat_ggZZ_2018        lnN           -            -              -          1.032         -	-	- 	       -            -            -            1.032         -	-	-		-        -            -             1.032	  -	-	-
+MCstat_ZZ_2018		lnN           -            -            1.025        -            -	-	-	       -            -            1.025        -            -	-	-		-            -            1.025        -	  -	-	-
+MCstat_ttz_2018		lnN           -            -            -            -            1.19	-	-	       -            -            -            -            1.19	-	-		-            -            -          -	         1.19	-	-
+
+# lumiScaler rateParam * * 1
+#theory group = SistPDF2 QCDScale_vbf QCDScale_ggZZ QCDscale_ZZ 
+#experiment group = JES JER CMS_eff_e CMS_eff_m CMS_hzz2e2mu_Zjets CMS_hzz4e_Zjets CMS_hzz4mu_Zjets lumi_13TeV 
+#all group = JES JER SistPDF2 QCDScale_vbf QCDScale_ggZZ QCDscale_ZZ CMS_eff_e CMS_eff_m CMS_hzz2e2mu_Zjets CMS_hzz4e_Zjets CMS_hzz4mu_Zjets lumi_13TeV
+# nuisance edit freeze lumiScaler
