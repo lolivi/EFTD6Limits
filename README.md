@@ -85,7 +85,7 @@ C-s
 - Delete ```<path>``` and write your own path
 - Now, if you are using pT:
 ```bash
-cd pT
+cd .../CMSSW_8_0_26_patch1/src/pT
 cmsenv
 cd data_driven_MC/ext/
 sh compile_ext.sh
