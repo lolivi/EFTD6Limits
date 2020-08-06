@@ -37,14 +37,17 @@ cd CMSSW_8_0_26_patch1/src/
 - For example, if you are using cW:
 ```bash
 cd .../CMSSW_8_0_26_patch1/src/
+git clone https://github.com/lolivi/EFTD6Limits.git
 mkdir weights
 cd weights
 mkdir cW
 cd cW
 mkdir Mass
-cd Mass
-wget https://github.com/lolivi/EFTD6Limits/blob/master/quad_ratio.py
-wget https://github.com/lolivi/EFTD6Limits/blob/master/lin_ratio.py
+mkdir pT
+cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/lin_ratio.py ./pT/
+cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/lin_ratio.py ./Mass/
+cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/quad_ratio.py ./pT/
+cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/quad_ratio.py ./Mass/
 ```
 - Change the path and write 0 if you are using the boson mass or 1 for the transverse momentum.
 - In line 49 you can change the binning. **Note: I used 27 bins for ZZMass with a range of (180,1530) GeV and 30 bins for Z pT with a range of (0,1500) GeV**.
@@ -60,12 +63,10 @@ python quad_ratio.py
 cd .../CMSSW_8_0_26_patch1/src/
 mkdir Mass
 mkdir pT
-git clone https://github.com/lolivi/EFTD6Limits.git
 cp -r EFTD6Limits/Mass/Backup/* Mass/
 cp -r EFTD6Limits/Mass/workspace/ Mass/
 cp -r EFTD6Limits/pT/Backup/* pT/
 cp -r EFTD6Limits/pT/workspace/ pT/
-rm -rf EFTD6Limits
 ```
 - You need to create some empty directories:
 ```bash
@@ -123,7 +124,7 @@ source runbkg_QUAD.sh
 - These need to be added to the SM shapes. Go to the directory where shapes are stored and launch:
 ```bash
 cd vbs_analysis/4l_channel/workspace/
-wget https://github.com/lolivi/EFTD6Limits/blob/master/hadd.sh
+cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/hadd.sh .
 source hadd.sh
 ```
 - Now you should have the complete set of shapes named "tot_...input_func.root"
