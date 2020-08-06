@@ -1,8 +1,8 @@
-executable              = /<path>/CMSSW_8_0_26_patch1/src/vbs_analysis/4l_channel/runAll.sh
-output                  = /<path>/CMSSW_8_0_26_patch1/src/vbs_analysis/4l_channel/output/$(ClusterId).$(ProcId).out
-error                   = /<path>/CMSSW_8_0_26_patch1/src/vbs_analysis/4l_channel/error/$(ClusterId).$(ProcId).err
-log                     = /<path>/CMSSW_8_0_26_patch1/src/vbs_analysis/4l_channel/log/$(ClusterId).log
-Initialdir              = /<path>/CMSSW_8_0_26_patch1/src/vbs_analysis/4l_channel/
+executable              = /<path>/CMSSW_8_0_26_patch1/src/pT/vbs_analysis/4l_channel/runAll.sh
+output                  = /<path>/CMSSW_8_0_26_patch1/src/pT/vbs_analysis/4l_channel/output/$(ClusterId).$(ProcId).out
+error                   = /<path>/CMSSW_8_0_26_patch1/src/pT/vbs_analysis/4l_channel/error/$(ClusterId).$(ProcId).err
+log                     = /<path>/CMSSW_8_0_26_patch1/src/pT/vbs_analysis/4l_channel/log/$(ClusterId).log
+Initialdir              = /<path>/CMSSW_8_0_26_patch1/src/pT/vbs_analysis/4l_channel/
 +JobFlavour             = "tomorrow"
 
 should_transfer_files = YES
