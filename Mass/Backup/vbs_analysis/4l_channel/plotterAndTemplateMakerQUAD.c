@@ -165,7 +165,7 @@ float bincont1, bincont2, bincont3;
 	float c_constant = 14.0;    //8.5;
         // if (year == 2017) c_constant = 3.5;
 	// if (year == 2018) c_constant = 3.5; 
-	TFile* f_ = TFile::Open("/<path>/CMSSW_8_0_26_patch1/src/vbs_analysis/4l_channel/cconstants/SmoothKDConstant_m4l_DjjVBF13TeV.root");
+	TFile* f_ = TFile::Open("/<path>/CMSSW_8_0_26_patch1/src/Mass/vbs_analysis/4l_channel/cconstants/SmoothKDConstant_m4l_DjjVBF13TeV.root");
 	TSpline3* ts = (TSpline3*)(f_->Get("sp_gr_varReco_Constant_Smooth")->Clone());
 	f_->Close();
 
@@ -498,7 +498,7 @@ float bincont1, bincont2, bincont3;
 
 	  
 	TChain *tqqzz_zx= new TChain("candTree");
-	sprintf(filename,"/<path>/CMSSW_8_0_26_patch1/src/data_driven_MC/ZX%d_noCut%s.root",year,theExtra.c_str()); 
+	sprintf(filename,"/<path>/CMSSW_8_0_26_patch1/src/Mass/data_driven_MC/ZX%d_noCut%s.root",year,theExtra.c_str()); 
 	tqqzz_zx->Add(filename);
 	
 	//histogram declaration
