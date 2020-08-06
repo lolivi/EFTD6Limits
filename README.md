@@ -143,6 +143,10 @@ cd pT
 cp -r .../CMSSW_8_0_26_patch1/src/pT/vbs_analysis/4l_channel/workspace/ .
 ```
 - Download the cards from pT/cards/... (or Mass/cards/...)
+```bash
+cd .../CMSSW_10_2_13/src/cW/pT/
+wget 
+```
 - Open the files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt 
 - Copy number 1, 6 and 11 and paste in the cards in the processes named "linear_1" (or "quadratic_1")
 - Now the cards should be ready
