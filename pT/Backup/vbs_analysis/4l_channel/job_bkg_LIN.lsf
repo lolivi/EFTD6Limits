@@ -1,4 +1,4 @@
-workdir=/<path>/CMSSW_8_0_26_patch1/src/vbs_analysis/4l_channel
+workdir=/<path>/CMSSW_8_0_26_patch1/src/pT/vbs_analysis/4l_channel
 cd ..
 eval `scramv1 runtime -sh`
 cd $workdir
