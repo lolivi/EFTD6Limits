@@ -1,0 +1,9 @@
+/eos/cms/store/group/phys_higgs/cmshzz4l/cjlst/RunIILegacy/200205_CutBased/MC_2016/ZZTo4lamcatnlo_2016/ZZ4lAnalysis.root
+/eos/cms/store/group/phys_higgs/cmshzz4l/cjlst/RunIILegacy/200205_CutBased/MC_2016/ggZZnew_012jet_2016/ZZ4lAnalysis.root
+/eos/cms/store/group/phys_higgs/cmshzz4l/cjlst/RunIILegacy/200205_CutBased/MC_2016/VBFTo4lJJ_0PMH125Contin_madgraph_2016/ZZ4lAnalysis.root
+/eos/cms/store/group/phys_higgs/cmshzz4l/cjlst/RunIILegacy/200205_CutBased/Data_2016/AllData/ZZ4lAnalysis.root
+/eos/cms/store/group/phys_higgs/cmshzz4l/cjlst/RunIILegacy/200205_CutBased/MC_2016/TTZToLLNuNu_M10/ZZ4lAnalysis.root
+/eos/cms/store/group/phys_higgs/cmshzz4l/cjlst/RunIILegacy/200205_CutBased/MC_2016/WWZ/ZZ4lAnalysis.root
+/eos/user/y/yian/VBSZZ/ZZ4l_inter_2016.root
+/eos/user/y/yian/VBSZZ/WZZ_2016.root
+/eos/user/y/yian/VBSZZ/ZZZ_2016.root
