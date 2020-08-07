@@ -10,10 +10,7 @@ When the jobs are finished there will be a directory named ZZ2e2mu_coefficient_Q
 python postProcess.py ZZ2e2mu_<coeff>_<QU/LI/SM>_results
 head -n 3 ZZ2e2mu_<coeffic>_<QU/LI/SM>_results/postProcess.txt > /<path>/<directory>/crossSection.txt
 ```
-- Download copyToDir.sh from this repository:
-```bash
-wget https://github.com/lolivi/EFTD6Limits/blob/master/copyToDir.sh
-```
+- Download copyToDir.sh from this repository
 - Change the path inside the file copyToDir.sh and launch:
 ```bash
 source copyToDir.sh ZZ2e2mu_<coeff>_<QU/LI/SM> <condor_cluster_number> <directory>
