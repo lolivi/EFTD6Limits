@@ -77,7 +77,7 @@ mkdir noScaleZX
 mkdir output
 ```
 
-- Almost every file in vbs_analysis/4l_channel/ has a keyword ```<path>```. If you find it on a file you have to change it. The files you have to change are plotterAndTemplateMakerQUAD.c and LIN, condor.sub and runAll.sh.
+- Almost every file in vbs_analysis/4l_channel/ has a keyword ```<path>```. If you find it on a file you have to change it. The files you have to change are plotterAndTemplateMakerQUAD.c and LIN, condor.sub, runAll.sh, job_bkg_QUAD.sh and job_bkg_LIN.sh.
 ```bash
 emacs -nw plotterAndTemplateMakerQUAD.c
 C-s 
