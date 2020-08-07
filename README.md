@@ -124,7 +124,7 @@ cd vbs_analysis/4l_channel/workspace/
 cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/hadd.sh .
 source hadd.sh
 ```
-- Now you should have the complete set of shapes named "tot_...input_func.root"
+- Now you should have the complete set of shapes named "tot_...input_func.root".
 ## Analysis
 For this section use CMSSW_10_2_13 and Combine. To download Combine go [here](http://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/).
 ```bash
@@ -147,10 +147,8 @@ cp -r .../CMSSW_8_0_26_patch1/src/Mass/vbs_analysis/4l_channel/workspace/ .
 - Download the cards from pT/cards/... (or Mass/cards/...)
 ```bash
 cd .../CMSSW_10_2_13/src/cW/
-git clone https://github.com/lolivi/EFTD6Limits.git
-cp -r EFTD6Limits/pT/cards/* ./pT/
-cp -r EFTD6Limits/Mass/cards/* ./Mass/
-rm -rf EFTD6Limits
+cp -r .../EFTD6Limits/pT/cards/* ./pT/
+cp -r .../EFTD6Limits/Mass/cards/* ./Mass/
 ```
 - Open the files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt 
 - Copy number 1, 6 and 11 and paste in the cards in the processes named "linear_1" (or "quadratic_1")
@@ -177,9 +175,13 @@ combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSigna
 combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_my_1 --setParameters r=1,k_my_1=0 --algo singles --cl=0.95 -n singles_95_expected --do95=1 --robustFit=1 --expectSignal=1 -t-1
 combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_my_1 --freezeParameters r --setParameters r=1,k_my_1=0 -n grid_expected --setParameterRanges k_my_1=-2.5,2.5 --expectSignal=1 -t -1 
 ```
-- Finally, if you want the complete plot launch:
+- Finally, if you want the complete plot of both the expected and observed launch:
 ```bash
-wget https://github.com/lolivi/EFTD6Limits/blob/master/plotCombine.py
+cp .../EFTD6Limits/plotCombine.py .
 python plotCombine.py
+```
+- You can now remove the EFTD6Limits directory.
+```bash
+rm -rf EFTD6Limits
 ```
 - You will find my results here (link mancante). They are for VBS ZZ with ZZMass and Z pT. The operators are cHDD, cW and cHWB.   
