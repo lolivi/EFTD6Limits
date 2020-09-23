@@ -72,10 +72,14 @@ for i in range(len(runlist)):
         end=400
     histlistBSM.append(TH1F(appendLeg+" BSM",appendLeg+" BSM",nBins,start,end))
     histlistSM.append(TH1F(appendLeg+" SM",appendLeg+" SM",nBins,start,end))
-    for j in range (1,50): fillHHMass(histlistBSM[i],"/<path>/ZZ2e2mu_LO_cW_LIN/unweighted_events_"+str(j)+".lhe")
+    for j in range (1,200):
+	if (os.path.isfile("/<path>/ZZ2e2mu_cW_LI/unweighted_events_"+str(j)+".lhe")):
+		fillHHMass(histlistBSM[i],"/<path>/ZZ2e2mu_cW_LI/unweighted_events_"+str(j)+".lhe")
     if(histlistBSM[i].GetBinContent(nBins+1)>0.):
     	histlistBSM[i].SetBinContent(nBins,histlistBSM[i].GetBinContent(nBins+1)+histlistBSM[i].GetBinContent(nBins))
-    for j in range (1,200): fillHHMass(histlistSM[i],"/<path>/ZZ2e2mu_LO_SM/unweighted_events_"+str(j)+".lhe")
+    for j in range (1,200):
+	if (os.path.isfile("/<path>/ZZ2e2mu_SM/unweighted_events_"+str(j)+".lhe")):
+		fillHHMass(histlistSM[i],"/<path>/ZZ2e2mu_SM/unweighted_events_"+str(j)+".lhe")
     if(histlistSM[i].GetBinContent(nBins+1)>0.):
     	histlistSM[i].SetBinContent(nBins,histlistSM[i].GetBinContent(nBins+1)+histlistSM[i].GetBinContent(nBins))#OVERFLOW
     
