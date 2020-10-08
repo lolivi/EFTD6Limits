@@ -55,6 +55,9 @@ cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/quad_ratio.py ./Mass/
 python quad_ratio.py
 ```
 - You should get on screen "float weightBSM = {...};" and a pdf file for the plot. Copy it and save it for later.
+- You can also use quad_ratio_cuts.py, a file which cointains all the cuts from the ZZjj inclusive selection. It also has a function which rebins all the histograms from SM and BSM, so that there are no less than 5 events per bin.
+- If you're going to use this file, you'll have to rebin all the shapes for the cards.
+- You should get on screen the array used for the rebinned histograms, copy it and save it for later. 
 - Now return to .../CMSSW_8_0_26_patch1/src/
 ```bash
 cd .../CMSSW_8_0_26_patch1/src/
@@ -73,7 +76,6 @@ mkdir log
 mkdir noScaleZX
 mkdir output
 ```
-
 - Almost every file in vbs_analysis/4l_channel/ has a keyword ```<path>```. If you find it on a file you have to change it. The files you have to change are plotterAndTemplateMakerQUAD.c and LIN, condor.sub, runAll.sh, job_bkg_QUAD.sh and job_bkg_LIN.sh.
 ```bash
 emacs -nw plotterAndTemplateMakerQUAD.c
@@ -94,7 +96,9 @@ cd vbs_analysis/4l_channel/
 emacs -nw plotterAndTemplateMakerQUAD.c
 ```
 - Copy "float weightBSM = {..};" in plotterAndTemplateMakerQUAD.c
+- If you used quad_ratio_cuts.py and the histograms have been rebinned, you have to change the variable "rebin" from False to True and paste the array used for the rebinning.
 - Do the same for the linear events with plotterAndTemplateMakerLIN.c
+- If the histograms have been rebinned, you have to change plotterAndTemplateMaker.C to get the rebinned SM shapes.
 - Check that everything is okay:
 ```bash
 root -l
@@ -184,4 +188,3 @@ python plotCombine.py
 ```bash
 rm -rf EFTD6Limits
 ```
-- You will find my results here (link mancante). They are for VBS ZZ with ZZMass and Z pT. The operators are cHDD, cW and cHWB.   
