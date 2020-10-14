@@ -47,7 +47,7 @@ cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/quad_ratio.py ./pT/
 cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/quad_ratio.py ./Mass/
 ```
 - Change the path and write 0 if you are using the boson mass or 1 for the transverse momentum.
-- In line 49 you can change the binning. **Note: I used 27 bins for ZZMass with a range of (180,1530) GeV and 30 bins for Z pT with a range of (0,1500) GeV**.
+- In line 49 you can change the binning. **Note: I used 40 bins for ZZMass with a range of (180,2180) GeV and 20 bins for Z pT with a range of (0,1000) GeV**.
 - If you are using another boson, change the PDG code in line 41 (23 is for Z, 24 is for positive charged W and so on...)
 - Change the cross sections in line 46 and 47, which are used to normalize the plots. You will find them in the txt file obtained in the generation section.
 - Then launch:
@@ -76,7 +76,7 @@ mkdir log
 mkdir noScaleZX
 mkdir output
 ```
-- Almost every file in vbs_analysis/4l_channel/ has a keyword ```<path>```. If you find it on a file you have to change it. The files you have to change are plotterAndTemplateMakerQUAD.c and LIN, condor.sub, runAll.sh, job_bkg_QUAD.sh and job_bkg_LIN.sh.
+- Almost every file in vbs_analysis/4l_channel/ has a keyword ```<path>```. If you find it on a file you have to change it. The files you have to change are plotterAndTemplateMaker.c, plotterAndTemplateMakerQUAD.c and LIN, condor.sub, runAll.sh, job_bkg.sh, job_bkg_QUAD.sh and job_bkg_LIN.sh.
 ```bash
 emacs -nw plotterAndTemplateMakerQUAD.c
 C-s 
@@ -98,7 +98,7 @@ emacs -nw plotterAndTemplateMakerQUAD.c
 - Copy "float weightBSM = {..};" in plotterAndTemplateMakerQUAD.c
 - If you used quad_ratio_cuts.py and the histograms have been rebinned, you have to change the variable "rebin" from False to True and paste the array used for the rebinning.
 - Do the same for the linear events with plotterAndTemplateMakerLIN.c
-- If the histograms have been rebinned, you have to change plotterAndTemplateMaker.C to get the rebinned SM shapes.
+- If the histograms have been rebinned, you have to change also plotterAndTemplateMaker.C to get the rebinned SM shapes.
 - Check that everything is okay:
 ```bash
 root -l
@@ -106,13 +106,15 @@ root -l
 .L plotterAndTemplateMakerLIN.c
 .q
 ```
+- If you have rebinned your histograms, change runAll.c, adding also plotterAndTemplateMaker.C.
 - If everything is okay launch:
 ```bash
 condor_submit condor.sub
 ```
 - When the jobs are finished you will get two txt files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt
-- These contain the integrals of the processes divided by channel. So number 1 is the weighted vbs process for 4mu while the other 4 are just the SM processes for 4mu. Then number 6 will be the weighted vbs process for 4e and 11 for 2e2mu.
+- These contain the integrals of the processes divided by channel. So number 1 is the weighted vbs process for 4mu. Then number 2 will be the weighted vbs process for 4e and 3 for 2e2mu.
 - You will also get root files called quad_vbs_Moriond_2016.root and lin_vbs_Moriond_2016.root. These are used to create the workspace.
+- If you have rebinned your histograms change the variable rebin to True in bkgWorkspace1d.C.
 - Now launch:
 ```bash
 root -l
@@ -155,7 +157,7 @@ cp -r .../EFTD6Limits/pT/cards/* ./pT/
 cp -r .../EFTD6Limits/Mass/cards/* ./Mass/
 ```
 - Open the files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt 
-- Copy number 1, 6 and 11 and paste in the cards in the processes named "linear_1" (or "quadratic_1")
+- Copy number 1, 2 and 3 and paste in the cards in the processes named "linear_1" (or "quadratic_1")
 - Now the cards should be ready
 - You can download the physics model from [here](https://github.com/amassiro/AnalyticAnomalousCoupling/tree/master/python)
 - Copy AnomalousCoupling.py in ".../CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit/python"
