@@ -23,14 +23,16 @@ void dosomething(TString chan="2e2mu", int year=2016, int enriched = 0){
 	if (enriched == 4) theExtra = "_ptjet50";
 	if (enriched == 5) theExtra = "_superVBSenrMjj";
 
-        int nBinsTempl = 27;
+        int nBinsTempl = 20;
         if (enriched == 1) nBinsTempl = 25;
         if (enriched == 2 || enriched == 5) nBinsTempl = 10;
+        
+        bool rebin=false; //change to true if the histograms have been rebinned
    
         char filename[300];
 
         static const int samples = 5;
-        string namesamp[samples] = {"lin_vbs","zjet","qqzz","ggzz","ttzwzz"}; 
+        string namesamp[samples] = {"vbs","zjet","qqzz","ggzz","ttzwzz"}; 
 	static const int systs = 0;   //4
         string namesyst[systs] = {};	
 	bool hasShape[samples][systs] = {{},
@@ -42,7 +44,7 @@ void dosomething(TString chan="2e2mu", int year=2016, int enriched = 0){
 	float normalizations[samples][3];
 
 	// normalize histos, otherwise combine complains...
-	sprintf(filename,"linMCyields_%d%s.txt",year,theExtra.c_str());
+	sprintf(filename,"MCyields_%d%s.txt",year,theExtra.c_str());
         ifstream parInput(filename);
 
 	if (parInput.is_open()) { //qui legge MCyields e assegna le varie normalizations
@@ -66,6 +68,8 @@ void dosomething(TString chan="2e2mu", int year=2016, int enriched = 0){
 	  channum=2;
 	else if(chan=="4mu")
 	  channum=1;
+	  
+	if (rebin==true) chan=chan+"_new";
 
 	for (int is = 0; is < samples; is++) {
 
@@ -82,7 +86,7 @@ void dosomething(TString chan="2e2mu", int year=2016, int enriched = 0){
 	  }
 	
 	  sprintf(filename,"bkg_%s",namesamp[is].c_str());
-	  if(is==0) sprintf(filename,"linear_1");
+	  if(is==0) sprintf(filename,"sm");
 	  temp_1d[is]->SetNameTitle(filename,filename);
 
 	}
@@ -105,15 +109,19 @@ void dosomething(TString chan="2e2mu", int year=2016, int enriched = 0){
 	TH1F* data_1d;// = new TH1F("data_1d","",nBinsTempl,200,1500);
 	TH1F* zx1d;
 	data_1d=(TH1F*)fdata->Get("temp_1d_"+chan);
-	zx1d=(TH1F*)fZX->Get("hzx1");
+	if (rebin==true) zx1d=(TH1F*)fZX->Get("hzx_new");
+	if (rebin==false) zx1d=(TH1F*)fZX->Get("hzx");
 	//sprintf(filename,"chan==%d && vbfcate==1",channum);
 	//tdata->Draw("mreco>>data_1d",filename);	
 	data_1d->SetNameTitle("data_obs","data_obs");
+	int dataint=(int)(data_1d->Integral());
+	float data=data_1d->Integral();
+	data_1d->Scale(dataint/data);
 	zx1d->SetNameTitle("bkg_zjet","bkg_zjet");
 
 	TFile *fwork ;
 	float theScale, theIntegral = 0;
-	fwork= new TFile("workspace/lin_1D_vbs4lSyst_"+chan+Form("1S_%d.input_func%s.root",year,theExtra.c_str()),"recreate");
+	fwork= new TFile("workspace/1D_vbs4lSyst_"+chan+Form("1S_%d.input_func%s.root",year,theExtra.c_str()),"recreate");
 	fwork->cd();
 	for (int is = 0; is < samples; is++) {
 	  if (is==1) continue;    // zx later!
@@ -121,13 +129,12 @@ void dosomething(TString chan="2e2mu", int year=2016, int enriched = 0){
           theScale = 1.;
  	  /*if (is > 1)*/ theScale = normalizations[is][channum-1]/theIntegral;
 	  temp_1d[is]->Scale(theScale);
-	  //temp_1d[is]->Write();
+	  temp_1d[is]->Write();
 	}
-	temp_1d[0]->Write();
 	theScale = normalizations[1][channum-1]/zx1d->Integral();
 	zx1d->Scale(theScale);  
-	//zx1d->Write();
-	//data_1d->Write();
+	zx1d->Write();
+	data_1d->Write();
 	fwork->Close();
 }
 
