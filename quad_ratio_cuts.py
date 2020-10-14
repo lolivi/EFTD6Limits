@@ -53,9 +53,9 @@ def rebinning(histo1,histo2,j,fillVar):
 	    			
 	    			formerbins=newbins
 	    			
-				if (formerbins-k)%2==0:
+				if (k>1 and (formerbins-k)%2)==0:
 					index=k-2
-					while( (xbins[k-1]-xbins[index]) != (newrange/2) ):
+					while( (xbins[k-1]-xbins[index]) != (newrange/2) and index>=0 ):
 						index=index-1
 					k=index+1
 					
@@ -380,14 +380,14 @@ for i in range(len(runlist)):
         nBins=20
     histlistBSM.append(TH1F(appendLeg+" BSM",appendLeg+" BSM",nBins,start,end))
     histlistSM.append(TH1F(appendLeg+" SM",appendLeg+" SM",nBins,start,end))
-    for j in range (1,2):
-    	if (os.path.isfile("./BSM/run_01/unweighted_events.lhe")): 
-   		fillHHMass(histlistBSM[i],"./BSM/run_01/unweighted_events.lhe")
+    for j in range (1,2000):
+    	if (os.path.isfile("<path>/ZZ2e2mu/unweighted_events_"+str(j)+".lhe")): 
+   		fillHHMass(histlistBSM[i],"<path>/ZZ2e2mu/unweighted_events_"+str(j)+".lhe")
     if(histlistBSM[i].GetBinContent(nBins+1)>0.):
     	histlistBSM[i].SetBinContent(nBins,histlistBSM[i].GetBinContent(nBins+1)+histlistBSM[i].GetBinContent(nBins))
-    for j in range (1,2):
-    	 if (os.path.isfile("./SM/run_01/unweighted_events.lhe")):
-    		fillHHMass(histlistSM[i],"./SM/run_01/unweighted_events.lhe")
+    for j in range (0,500):
+    	 if (os.path.isfile("<path>/ZZ2e2mu_SM/unweighted_events_"+str(j)+".lhe")):
+    		fillHHMass(histlistSM[i],"<path>/ZZ2e2mu_SM/unweighted_events_"+str(j)+".lhe")
     if(histlistSM[i].GetBinContent(nBins+1)>0.):
     	histlistSM[i].SetBinContent(nBins,histlistSM[i].GetBinContent(nBins+1)+histlistSM[i].GetBinContent(nBins))#OVERFLOW
     	
