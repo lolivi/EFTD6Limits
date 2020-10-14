@@ -53,7 +53,7 @@ def rebinning(histo1,histo2,j,fillVar):
 	    			
 	    			formerbins=newbins
 	    			
-				if (k>1 and formerbins-k)%2==0:
+				if (k>1 and (formerbins-k)%2)==0:
 					index=k-2
 					while( (xbins[k-1]-xbins[index]) != (newrange/2) and index>=0 ):
 						index=index-1
