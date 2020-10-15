@@ -437,11 +437,18 @@ void plotterAndTemplateMakerQUAD(int year = 2018, int useMCatNLO = 1, int enrich
 	
 	for (int it=0; it < 5; it++) {
 	  fnew[it]->cd();
-	  if (it == 2) {
+	  if (it < 3 || it == 4) {
 	    temp_1d_4e[it]->Write();
 	    temp_1d_4mu[it]->Write();
 	    temp_1d_2e2mu[it]->Write();
-	  } 
+	  }
+	  
+	  if(it==3){
+	  	hzx->Write();
+	  	temp_1d_4e[it]->Write();
+	  	temp_1d_4mu[it]->Write();
+	  	temp_1d_2e2mu[it]->Write();
+	  	}
 	  tnew[it]->Write();
 	  fnew[it]->Close();
 	}
