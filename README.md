@@ -165,21 +165,21 @@ cp -r .../EFTD6Limits/Mass/cards/* ./Mass/
 Finally launch:
 ```bash
 combineCards.py -S card_all_2016_1D.txt card_all_2017_1D.txt card_all_2018_1D.txt > card_all_2016-18.txt 
-text2workspace.py card_all_2016-18.txt -P HiggsAnalysis.CombinedLimit.AnaliticAnomalousCouplingEFTNegative:analiticAnomalousCouplingEFTNegative --PO=k_cW,r -o model_test.root
+text2workspace.py card_all_2016-18.txt -P HiggsAnalysis.CombinedLimit.AnomalousCouplingEFTNegative:analiticAnomalousCouplingEFTNegative -o model_test.root --X-allow-no-signal --PO eftOperators=cW
 ```
 - For the observed:
 ```bash
-combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_my_1 --setParameters r=1 --algo singles --cl=0.95 -n singles_95_observed --robustFit=1 --do95=1
+combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_cW --setParameters r=1 --algo singles --cl=0.95 -n singles_95_observed --robustFit=1 --do95=1 --cminDefaultMinimizerStrategy=0
 ```
 If it doesn't find the 95% crossing add "--setCrossingTolerance=0.0000000000001"
 - If you want to plot the likelihood launch:
 ```bash
-combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_my_1 --freezeParameters r --setParameters r=1 -n grid_observed --setParameterRanges k_my_1=-2.5,2.5
+combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_cW --freezeParameters r --setParameters r=1 -n grid_observed --setParameterRanges k_cW=-2.5,2.5
 ```
 - For the expected launch:
 ```bash
-combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_my_1 --setParameters r=1,k_my_1=0 --algo singles --cl=0.95 -n singles_95_expected --do95=1 --robustFit=1 --expectSignal=1 -t-1
-combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_my_1 --freezeParameters r --setParameters r=1,k_my_1=0 -n grid_expected --setParameterRanges k_my_1=-2.5,2.5 --expectSignal=1 -t -1 
+combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_cW --setParameters r=1,k_cW=0 --algo singles --cl=0.95 -n singles_95_expected --do95=1 --robustFit=1 --expectSignal=1 -t-1 --cminDefaultMinimizerStrategy=0
+combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_cW --freezeParameters r --setParameters r=1,k_cW -n grid_expected --setParameterRanges k_cW=-2.5,2.5 --expectSignal=1 -t -1 
 ```
 - Finally, if you want the complete plot of both the expected and observed launch:
 ```bash
