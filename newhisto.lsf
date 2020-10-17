@@ -1,0 +1,7 @@
+workdir=/afs/cern.ch/user/l/lolivi/CMSSW_8_0_26_patch1/src/cqq3/pT/vbs_analysis/4l_channel/workspace
+cd ..
+eval `scramv1 runtime -sh`
+cd $workdir
+root -q -b "histo3.c(\"$1\",\"$2\")"
+
+
