@@ -10,7 +10,7 @@ bin          ch1_4mu      ch2_4e       ch3_2e2mu
 observation  35	21	46
 ----------------------------------------------------------------------------------------------------------------------------------
 bin                                   ch1_4mu	   ch1_4mu	ch1_4mu	     ch1_4mu	  ch1_4mu	ch1_4mu	ch1_4mu      ch2_4e       ch2_4e	 ch2_4e       ch2_4e       ch2_4e	ch2_4e	ch2_4e       ch3_2e2mu    ch3_2e2mu    ch3_2e2mu    ch3_2e2mu  ch3_2e2mu		ch3_2e2mu ch3_2e2mu
-process                               sm	   bkg_zjet	bkg_qqzz     bkg_ggzz	  bkg_ttzwzz	quadratic_1	     linear_1	  sm		 bkg_zjet     bkg_qqzz	   bkg_ggzz	bkg_ttzwzz	     quadratic_1  linear_1     sm	    bkg_zjet   bkg_qqzz			bkg_ggzz bkg_ttzwzz quadratic_1 linear_1
+process                               sm	   bkg_zjet	bkg_qqzz     bkg_ggzz	  bkg_ttzwzz	quad_<oper>	     sm_lin_quad_<oper>	  sm		 bkg_zjet     bkg_qqzz	   bkg_ggzz	bkg_ttzwzz	     quad_<oper>  sm_lin_quad_<oper>     sm	    bkg_zjet   bkg_qqzz			bkg_ggzz bkg_ttzwzz quad_<oper> sm_lin_quad_<oper>
 process                               0            1            2            3            4	5	6            0	    1            2            3            4	5	6		0            1            2            3          4	5   6 
 rate                                  2.25193	0.773049	77.7392	20.3398	9.59349	-	-	1.46624	0.407167	77.7392	20.3398	9.59349	-	-	3.64187	1.24942	77.7392	20.3398	9.59349	-	-
 ----------------------------------------------------------------------------------------------------------------------------------
