@@ -179,7 +179,7 @@ combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSigna
 - For the expected launch:
 ```bash
 combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_cW --setParameters r=1,k_cW=0 --algo singles --cl=0.95 -n singles_95_expected --do95=1 --robustFit=1 -t-1 --cminDefaultMinimizerStrategy=0
-combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_cW --freezeParameters r --setParameters r=1,k_cW -n grid_expected --setParameterRanges k_cW=-2.5,2.5 -t -1 
+combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_cW --freezeParameters r --setParameters r=1,k_cW=0 -n grid_expected --setParameterRanges k_cW=-2.5,2.5 -t -1 
 ```
 - Finally, if you want the complete plot of both the expected and observed launch:
 ```bash
