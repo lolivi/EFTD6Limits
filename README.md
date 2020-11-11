@@ -56,7 +56,6 @@ python quad_ratio.py
 ```
 - You should get on screen "float weightBSM = {...};" and a pdf file for the plot. Copy it and save it for later.
 - You can also use quad_ratio_cuts.py, a file which cointains all the cuts from the ZZjj inclusive selection. It also has a function which rebins all the histograms from SM and BSM, so that there are no less than 5 events per bin.
-- If you're going to use this file, you'll have to rebin all the shapes for the cards.
 - You should get on screen the array used for the rebinned histograms, copy it and save it for later. 
 - Now return to .../CMSSW_8_0_26_patch1/src/
 ```bash
@@ -106,7 +105,7 @@ root -l
 .L plotterAndTemplateMakerLIN.c
 .q
 ```
-- If you have rebinned your histograms, change runAll.c, adding also plotterAndTemplateMaker.C.
+- If you have rebinned your histograms, change runAll.c and add plotterAndTemplateMaker.C.
 - If everything is okay launch:
 ```bash
 condor_submit condor.sub
@@ -114,7 +113,6 @@ condor_submit condor.sub
 - When the jobs are finished you will get two txt files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt
 - These contain the integrals of the processes divided by channel. So number 1 is the weighted vbs process for 4mu. Then number 2 will be the weighted vbs process for 4e and 3 for 2e2mu.
 - You will also get root files called quad_vbs_Moriond_2016.root and lin_vbs_Moriond_2016.root. These are used to create the workspace.
-- If you have rebinned your histograms change the variable rebin to True in bkgWorkspace1d.C.
 - Now launch:
 ```bash
 root -l
@@ -131,6 +129,13 @@ cp .../CMSSW_8_0_26_patch1/src/EFTD6Limits/hadd.sh .
 source hadd.sh
 ```
 - Now you should have the complete set of shapes named "tot_...input_func.root".
+- If you have a negative linear interfernce term, you need to change in histo3.c the name of the operator.
+- Do the same in newhisto.lsf
+- Then launch
+```bash
+source runnewhisto.sh
+source haddnew.sh
+```
 ## Analysis
 For this section use CMSSW_10_2_13 and Combine. To download Combine go [here](http://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/).
 ```bash
@@ -157,19 +162,22 @@ cp -r .../EFTD6Limits/pT/cards/* ./pT/
 cp -r .../EFTD6Limits/Mass/cards/* ./Mass/
 ```
 - Open the files named lin_MCyields_2016(17/18).txt and quad_MCyields_2016(17/18).txt 
-- Copy number 1, 2 and 3 and paste in the cards in the processes named "linear_1" (or "quadratic_1")
+- If the linear interference is positive copy number 1, 2 and 3 and paste in the cards in the processes named "linear_1" (or "quadratic_1")
+- If the interference is negative the linear process becomes sm_lin_quad_<opname> and the quadratic becomes quad_<opname>
+- Copy the SM+LIN+QUAD integral in sm_lin_quad, and the QUAD integral in quad
 - Now the cards should be ready
-- You can download the physics model from [here](https://github.com/amassiro/AnalyticAnomalousCoupling/tree/master/python)
-- Copy AnomalousCoupling.py in ".../CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit/python"
+- You can download the physics model from [here](https://github.com/amassiro/AnalyticAnomalousCoupling/tree/master/python) for the positive analysis
+- Download AnomalousCouplingEFTNegative.py for the negative analysis
+- Copy in ".../CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit/python"
 ### Combine
-Finally launch:
+Finally launch for the positive:
 ```bash
 combineCards.py -S card_all_2016_1D.txt card_all_2017_1D.txt card_all_2018_1D.txt > card_all_2016-18.txt 
 text2workspace.py card_all_2016-18.txt -P HiggsAnalysis.CombinedLimit.AnomalousCouplingEFTNegative:analiticAnomalousCouplingEFTNegative -o model_test.root --X-allow-no-signal --PO eftOperators=cW
 ```
 - For the observed:
 ```bash
-combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_cW --setParameters r=1 --algo singles --cl=0.95 -n singles_95_observed --robustFit=1 --do95=1 --cminDefaultMinimizerStrategy=0
+combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_cW --setParameters r=1 --algo singles --cl=0.95 -n singles_95_observed --robustFit=1 --do95=1
 ```
 If it doesn't find the 95% crossing add "--setCrossingTolerance=0.0000000000001"
 - If you want to plot the likelihood launch:
@@ -178,8 +186,17 @@ combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSigna
 ```
 - For the expected launch:
 ```bash
-combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_cW --setParameters r=1,k_cW=0 --algo singles --cl=0.95 -n singles_95_expected --do95=1 --robustFit=1 -t-1 --cminDefaultMinimizerStrategy=0
+combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_cW --setParameters r=1,k_cW=0 --algo singles --cl=0.95 -n singles_95_expected --do95=1 --robustFit=1 -t-1 
 combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_cW --freezeParameters r --setParameters r=1,k_cW=0 -n grid_expected --setParameterRanges k_cW=-2.5,2.5 -t -1 
+```
+- For the negative launch:
+```bash
+combineCards.py -S card_all_2016_1D.txt card_all_2017_1D.txt card_all_2018_1D.txt > card_all_2016-18.txt 
+text2workspace.py card_all_2016-18.txt -P HiggsAnalysis.CombinedLimit.AnomalousCouplingEFTNegative:analiticAnomalousCouplingEFTNegative -o model_test.root --X-allow-no-signal --PO eftOperators=cW
+combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_cW --setParameters r=1 --algo singles --cl=0.95 -n singles_95_observed --robustFit=1 --do95=1
+combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_cW --freezeParameters r --setParameters r=1 -n grid_observed --setParameterRanges k_cW=-2.5,2.5
+combine -M MultiDimFit model_test.root --freezeParameters r --redefineSignalPOIs k_cW --setParameters r=1,k_cW=0 --algo singles --cl=0.95 -n singles_95_expected --do95=1 --robustFit=1 -t-1 
+combine -M MultiDimFit model_test.root --algo grid --points 1000 --redefineSignalPOIs k_cW --freezeParameters r --setParameters r=1,k_cW=0 -n grid_expected --setParameterRanges k_cW=-2.5,2.5 -t -1
 ```
 - Finally, if you want the complete plot of both the expected and observed launch:
 ```bash
