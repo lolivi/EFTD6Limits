@@ -93,6 +93,10 @@ def rebinning(histo1,histo2,j,fillVar):
 	print xbins
 	print "Please change rebin from False to True in plotterAndTemplateMaker.C and copy this array"
 	
+	entriesBSM=histlistBSM[i].GetEntries()
+    	entriesSM=histlistSM[i].GetEntries()
+    	histlistBSM[i].Scale(XSBSM/entriesBSM)
+    	histlistSM[i].Scale(XSSM/entriesSM)
 	
 	histlistRAPP.append(TH1F("BSM/SM new","BSM/SM new",newbins,xbinsd))
 	
@@ -410,12 +414,14 @@ for i in range(len(runlist)):
     histlistSM[i].SetLineColor(colors[i]) 
     histlistSM[i].SetLineStyle(styles[i]) 
     histlistSM[i].SetFillStyle(fills[i])
-    entriesBSM=histlistBSM[i].GetEntries()
-    entriesSM=histlistSM[i].GetEntries()
-    histlistBSM[i].Scale(XSBSM/entriesBSM)
-    histlistSM[i].Scale(XSSM/entriesSM)
+    
     
     if (rebin==False): 
+	entriesBSM=histlistBSM[i].GetEntries()
+    	entriesSM=histlistSM[i].GetEntries()
+    	histlistBSM[i].Scale(XSBSM/entriesBSM)
+    	histlistSM[i].Scale(XSSM/entriesSM)		
+
     	histlistRAPP.append(TH1F(" Z P_{t} BSM/SM "," Z P_{t} BSM/SM ",nBins,start,end))
     
     	print "float weightBSM[]={"
