@@ -173,7 +173,7 @@ cp -r .../EFTD6Limits/Mass/cards/* ./Mass/
 Finally launch for the positive:
 ```bash
 combineCards.py -S card_all_2016_1D.txt card_all_2017_1D.txt card_all_2018_1D.txt > card_all_2016-18.txt 
-text2workspace.py card_all_2016-18.txt -P HiggsAnalysis.CombinedLimit.AnomalousCouplingEFTNegative:analiticAnomalousCouplingEFTNegative -o model_test.root --X-allow-no-signal --PO eftOperators=cW
+text2workspace.py card_all_2016-18.txt -P HiggsAnalysis.CombinedLimit.AnomalousCoupling:analiticAnomalousCoupling -o model_test.root --PO=k_cW,r
 ```
 - For the observed:
 ```bash
